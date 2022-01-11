@@ -1,0 +1,52 @@
+<div class="btn-group" role="group" aria-label="Exemplo básico">
+  <button type="button" class="btn btn-secondary" (click)="limpar()">Início</button>
+
+  <button type="button" (click)="exibirFormulario()" class="btn btn-secondary">Novo aluno</button>
+  <button type="button" (click)="exibirTabela()" class="btn btn-secondary">Lista</button>
+</div>
+
+<table *ngIf="exibeTabela" class="table">
+  <thead><tr>
+    <th scope="col">Nome</th>
+    <th scope="col">Idade</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Curso</th>
+  </tr></thead>
+  <tbody>
+  <tr *ngFor="let aluno of listaAlunos">
+    <td>{{aluno.nome}}</td>
+    <td>{{aluno.idade}}</td>
+    <td>{{aluno.email}}</td>
+    <td>{{aluno.curso}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<form *ngIf="exibeForm"  >
+  <div class="form-group">
+  <input class="form-control" type="text"  placeholder="Nome" name="nome"
+         [(ngModel)]="aluno.nome">
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="email"   placeholder="E-mail" name="email"
+           [(ngModel)]="aluno.email">
+  </div>
+    <div class="form-group">
+  <input class="form-control" type="number"    placeholder="Idade" name="idade"
+         [(ngModel)]="aluno.idade">
+    </div>
+  <div class="form-group">
+    <select class="form-control"  name="curso"
+            [(ngModel)]="aluno.curso">
+      <option>Sistemas de Informação</option>
+      <option>Ciência da Computação</option>
+      <option>Análise e Desenvolvimento de Sistemas</option>
+      <option>Engenharia da Computação</option>
+      <option>Engenharia de Software</option>
+    </select>
+  </div>
+
+  <button type="submit" (click)="save()" class="btn btn-secondary btn-lg btn-block">Inserir</button>
+
+
+</form>
